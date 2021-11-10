@@ -7,22 +7,22 @@ public class Modify {
 		Scanner scanner = new Scanner(System.in);
 		while (true) {
 			System.out.print(">>");
-			String s = scanner.nextLine(); // »ç¿ëÀÚ·ÎºÎÅÍ ÇÑ ÁÙ ÀĞ±â
+			String s = scanner.nextLine(); // ì‚¬ìš©ìë¡œë¶€í„° í•œ ì¤„ ì½ê¸°
 			StringBuffer sb = new StringBuffer(s);
-			// StringBuffer °´Ã¼ sb »ı¼º
+			// StringBuffer ê°ì²´ sb ìƒì„±
 			if (sb.toString().equals("exit")) {
-				System.out.println("Á¾·áÇÕ´Ï´Ù...");
+				System.out.println("ì¢…ë£Œí•©ë‹ˆë‹¤...");
 				break;
 			}
 			int index = (int) (Math.random() * s.length());
-			// º¯°æÇÒ ¹®ÀÚÀÇ À§Ä¡ ¼±ÅÃ
+			// ë³€ê²½í•  ë¬¸ìì˜ ìœ„ì¹˜ ì„ íƒ
 			while (true) {
 				int i = (int) (Math.random() * 26);
-				// »ğÀÔÇÒ ¹®ÀÚ¸¦ 26°³ ¾ËÆÄºª Áß¿¡¼­ ¼±ÅÃ
-				char c = (char) ('a' + i); // »õ·Î »ğÀÔÇÒ ¹®ÀÚ °áÁ¤
+				// ì‚½ì…í•  ë¬¸ìë¥¼ 26ê°œ ì•ŒíŒŒë²³ ì¤‘ì—ì„œ ì„ íƒ
+				char c = (char) ('a' + i); // ìƒˆë¡œ ì‚½ì…í•  ë¬¸ì ê²°ì •
 				if (sb.charAt(index) != c) {
-					// StringBuffer ¼ÓÀÇ ¹®ÀÚ¿Í »ğÀÔÇÏ´Â ¹®ÀÚ°¡ ´Ù¸¥ °æ¿ì
-// sÀÇ index À§Ä¡¿¡ ÀÖ´Â ¹®ÀÚ¸¦ ¹®ÀÚ c·Î º¯°æ
+					// StringBuffer ì†ì˜ ë¬¸ìì™€ ì‚½ì…í•˜ëŠ” ë¬¸ìê°€ ë‹¤ë¥¸ ê²½ìš°
+// sì˜ index ìœ„ì¹˜ì— ìˆëŠ” ë¬¸ìë¥¼ ë¬¸ì cë¡œ ë³€ê²½
 					sb.replace(index, index + 1, Character.toString(c));
 					break;
 				}
