@@ -8,29 +8,29 @@ public class Adder {
 		Scanner scanner=new Scanner(System.in);
 		String ori=scanner.nextLine();
 		
-		//+·Î ³ª´©±â
+		//+ë¡œ ë‚˜ëˆ„ê¸°
 		StringTokenizer stan=new StringTokenizer(ori,"+");
 		
 		int count=stan.countTokens();
 		String token[]=new String[count];
 	
-		//³ª´« °Å ´ã°í 
+		//ë‚˜ëˆˆ ê±° ë‹´ê³  
 		for(int i=0;i<count;i++) 
-			token[i] = stan.nextToken(); // ÅäÅ« ¾ò±â
+			token[i] = stan.nextToken(); // í† í° ì–»ê¸°
 		
-		//°ø¹é ½Ï Á¦°Å
+		//ê³µë°± ì‹¹ ì œê±°
 		for(int i=0;i<count;i++)
-			token[i] = token[i].trim(); // ÅäÅ« ¾ò±â
+			token[i] = token[i].trim(); // í† í° ì–»ê¸°
 		
-		//stringÀ» int·Î º¯È¯
+		//stringì„ intë¡œ ë³€í™˜
 		int fin[]=new int[count];
 		int sum=0;
 		for(int i=0;i<count;i++) {
 			fin[i]=Integer.parseInt(token[i]);
 			sum+=fin[i];
 		}
-		//ÇÕ°è Ãâ·Â
-		System.out.println("ÇÕÀº "+sum);
+		//í•©ê³„ ì¶œë ¥
+		System.out.println("í•©ì€ "+sum);
 		scanner.close();
 	}
 
