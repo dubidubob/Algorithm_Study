@@ -31,4 +31,7 @@ int main()
 2. string to int
 stoi([string 변수])
 long, double, float : stol, stod, stof
+
+3. int to string
+to_string
 */
