@@ -3,12 +3,45 @@
 [문제 링크](https://www.acmicpc.net/problem/2252) 
 
 ### 성능 요약
-
-메모리: 3832 KB, 시간: 84 ms
+by_me 메모리 : 메모리: 3828 KB, 시간: 1360 ms
+교재 메모리: 3832 KB, 시간: 84 ms
+---> 시간 차이가 나는 이유: 교재 코드는 queue에 0을 넣어 헛돌 필요가 없다. by_me는 graph 배열 중 0인 걸 직접 루프를 타며 순회했다. 헛도는 알고리즘은 굉장히 무식하다는 걸 알아두자!
 
 ### 분류
 
 방향 비순환 그래프, 그래프 이론, 위상 정렬
+
+### by_me 주석 미리보기
+! main()은 무조건 int를 반환!
+! queue 쓸 필요 없었음!
+! push back vs emplace back
+push back : 객체를 삽입하기 위해-> 똑같은 임시 객체를 하나 더 만들어서 여기에 값을 복사한 다음 벡터에 삽입
+-> 삽입 후 임시 객체 파괴 : 잠깐 쓰고 버릴 메모리를 굳이 할당해줘야 한다.
+	메모리 할당 X 데이터 삽입 Only / 인자값과 똑같은 임시 객체를 하나 더 만들어서 인자값으로 받은 값을 복사한다.
+	벡터에 그 임시 객체를 추가, 
+
+emplace back : 가변인자 템플릿을 사용, 삽입하려는 자료형에 따라 함수 내에서 삽입을 위한 객체를 자체 생성할 수 있다. 
+-> 메모리 할당을 하는 동시에 값을 삽입
+
+push back: capacity > element number reserve(1) capacity==element number reserve(capacity()*2)
+https://www.youtube.com/watch?v=iba0YkOn4zw
+https://www.youtube.com/watch?v=jKS9dSHkAZY
+
+! resize 관련
+listA.resize(N + 1, vector<int>(initialSize));
+이렇게 미리 사이즈 결정할 수 있다.
+
+* N 명, M 비교
+* 
+* front, back 
+* 오는 족족 
+인접리스트 M 만들고 
+진입 차수 배열 업데이트
+
+진입 차수 0부터(사이클이 없으니까) : 한 바퀴 돌면서, 진입 차수 0인 게 N번 되어야 함
+인접리스트 M child 보고
+진입 차수 배열 --
+진입 차수 index queue에 넣기
 
 ### 제출 일자
 
