@@ -1,10 +1,11 @@
 #include <iostream>
 #include <vector>
-#include <queue>
+//#include <queue>
 using namespace std;
 
 /*
 ! main()은 무조건 int를 반환!
+! queue 쓸 필요 없었음!
 ! push back vs emplace back
 push back : 객체를 삽입하기 위해-> 똑같은 임시 객체를 하나 더 만들어서 여기에 값을 복사한 다음 벡터에 삽입
 -> 삽입 후 임시 객체 파괴 : 잠깐 쓰고 버릴 메모리를 굳이 할당해줘야 한다.
@@ -51,12 +52,13 @@ int main() {
 		graph[back]++;
 	}
 
-	queue<int> queue;
+	//queue<int> queue;
+	// 교재 코드 : 0인 걸 모두 넣어두고, 나머지를 
+
 	int count = 0;//큐에 총 N가 추가되면, 종료
-	for (int i = 1; count!=N ; i++) {
+	for (int i = 1; count != N; i++) {
 		if (graph[i] == 0) 
 		{
-			queue.push(i);//큐에 추가
 			graph[i] = -1; //이미 추가했다는 표시
 			cout << i << " ";//해당 인덱스 프린트
 
