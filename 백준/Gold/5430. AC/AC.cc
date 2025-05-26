@@ -4,14 +4,12 @@
 using namespace std;
 
 void func() {
-    string word, arrays; 
-    int n;
+
+    string word, arrays; int n;
     cin >> word >> n >> arrays;
-    
+
     string numStr;
     deque<int> dq;
-    
-    // 배열 파싱
     for (char ch : arrays) {
         if (isdigit(ch)) {
             numStr += ch;
@@ -21,10 +19,8 @@ void func() {
             numStr.clear();
         }
     }
-    
+
     bool isRev = false;
-    
-    // 명령어 처리
     for (char ch : word) {
         if (ch == 'R') {
             isRev = !isRev;
@@ -40,8 +36,7 @@ void func() {
                 dq.pop_front();
         }
     }
-    
-    // 결과 출력
+
     cout << '[';
     if (isRev) {
         // 역순으로 출력
@@ -58,17 +53,16 @@ void func() {
         }
     }
     cout << "]\n";
-}
 
+}
 int main() {
-    ios::sync_with_stdio(false); 
-    cin.tie(nullptr); 
-    cout.tie(nullptr);
-    
+    ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
+
     int T;
     cin >> T;
     while (T--) {
         func();
     }
+
     return 0;
 }
