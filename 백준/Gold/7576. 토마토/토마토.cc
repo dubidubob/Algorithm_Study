@@ -9,7 +9,6 @@ const int dy[4] = { 0,0,1, -1};
 struct pos {
 	int x;
 	int y;
-	int time;
 };
 
 int main() {
@@ -19,47 +18,38 @@ int main() {
 	cin >> m >> n;
 
 	vector<vector<int>> board(n, vector<int>(m));
-	vector<vector<bool>> visited(n, vector<bool>(m));
 	queue<pos> q;
+	int unripen_t = 0;
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
 			cin >> board[i][j];
 			if (board[i][j] == 1)
-				q.push({ i, j, 0 });
+				q.push({ i, j });
+			else if (board[i][j] == 0)
+				unripen_t++;
 		}
 	}
 
 	int maxCnt = 0;
 	while (!q.empty()) {
 		pos cur = q.front(); q.pop();
-		if (visited[cur.x][cur.y]) continue;
-		visited[cur.x][cur.y] = true;
-		board[cur.x][cur.y] = 1;
-		maxCnt = max(maxCnt, cur.time);
+		maxCnt = max(maxCnt, board[cur.x][cur.y]);
 
 		for (int i = 0; i < 4; i++) {
-			pos nxt = { cur.x + dx[i], cur.y + dy[i], cur.time+1 };
+			pos nxt = { cur.x + dx[i], cur.y + dy[i] };
 			if (nxt.x < 0 || nxt.x >= n || nxt.y < 0 || nxt.y >= m) continue;
-			if (visited[nxt.x][nxt.y] || board[nxt.x][nxt.y] == -1) continue;
-			q.push(nxt);
-		}
-	}
-
-	bool isFailed = false;
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < m; j++) {
-			if (board[i][j] == 0) {
-				isFailed = true;
-				i = n;
-				break;
+			if (board[nxt.x][nxt.y] == 0) {
+				board[nxt.x][nxt.y] = board[cur.x][cur.y] + 1;
+				q.push(nxt);
+				unripen_t--;
 			}
 		}
 	}
 
-	if (isFailed)
+	if(unripen_t > 0)
 		cout << -1;
 	else
-		cout << maxCnt;
+		cout << maxCnt-1;
 
 	return 0;
 }
