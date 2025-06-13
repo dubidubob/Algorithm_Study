@@ -1,28 +1,26 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
-long long a, b, c;
-
-long long dp(long long level) {
-    if (level == 0) return 1;
-    if (level == 1)
-        return a % c;
-   
-    long long result = dp(level / 2);
-    result = (result*result) % c;
-    if (level % 2 == 1) {
-        result = (result * a) % c;
-    }
-
-    return result;
+int dp(int a, int b, int c) {
+	if (b == 1) 
+		return a % c;
+	
+	long temp = dp(a, b / 2, c);
+	if (b % 2 == 1) 
+		return ((temp * temp)%c  * (a % c))%c;
+		
+	else 
+		return (temp * temp) % c;
 }
 
-int main(void) {
-    ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
+int main() {
+	ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
 
-    cin >> a >> b >> c;
+	int a, b, c;
+	cin >> a >> b >> c;
 
-    cout << dp(b);
-    
-    return 0;
+	cout << dp(a, b, c);
+	
+	return 0;
 }
