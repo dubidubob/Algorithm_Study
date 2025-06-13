@@ -17,7 +17,7 @@ int main() {
 	sort(arr.begin(), arr.end());
 
 	int front, end;
-	front = 1; end = arr[arr.size() - 1] - arr[0] + 1;
+	front = 0; end = arr[arr.size() - 1] - arr[0] + 1;
 
 	while (front < end) {
 		int mid = (front + end) / 2;
