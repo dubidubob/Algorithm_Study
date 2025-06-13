@@ -9,15 +9,15 @@ int main() {
 	long long m;
 	cin >> n >> m;
 
-	long long minNum = 0;
-	vector<long long> arr(n);
+	int minNum = 0;
+	vector<int> arr(n);
 	for (int i = 0; i < n; i++) {
 		cin >> arr[i];
 		minNum = max(minNum, arr[i]);
 	}
 
 	long long front, end;
-	front = 0; end = minNum * m;
+	front = 0; end = (long long)minNum * m;
 	long long result = end;
 	// 최소 -> 
 	while (front <= end) {
