@@ -1,60 +1,55 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-
-#define INF 987654321
-
 using namespace std;
+const int INF = 3000000;
 
-int V, E, K;
-vector<pair<int,int>> v[20010];//그래프
-int d[20010];
+struct node {
+	int nodeNum;
+	int weight;
 
-void solution() {// 최단 경로 찾는 거
-    priority_queue<pair<int, int>> pq;
-    pq.push({ 0,K });
-    d[K] = 0;
-
-    while (!pq.empty()) {
-        int distance = -pq.top().first;
-        int current = pq.top().second;
-
-        pq.pop();
-
-        if (d[current] < distance) continue;
-
-        for (int i = 0; i < v[current].size(); i++) {
-            int next = v[current][i].first;
-            int next_distance = distance + v[current][i].second;
-
-            if (next_distance < d[next]) {
-                d[next] = next_distance;
-                pq.push({ -d[next],next });
-            }
-        }
-    }
-
-    for (int i = 1; i <= V; i++) {
-        if (d[i] == INF) cout << "INF\n";
-        else cout << d[i] << "\n";
-    }
-}
-
+	bool operator<(const node& other) const {
+		return weight > other.weight;
+	}
+};
 int main() {
-    cin >> V >> E;
-    cin >> K;
+	ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
 
-    for (int i = 0; i < E; i++) {
-        int a, b, c;
-        cin >> a >> b >> c;
-        v[a].push_back({ b,c });
-    }
+	int v, e; cin >> v >> e;
+	int start; cin >> start;
 
-    for (int i = 1; i <= V; i++) {
-        d[i] = INF;
-    }
+	vector<vector<node>> graph(v + 1);
+	for (int i = 0; i < e; i++) {
+		int s, e, w; cin >> s >> e >> w;
+		graph[s].push_back({ e, w });
+	}
 
-    solution();
+	vector<bool> visited(v + 1);
+	vector<int> dist(v + 1, INF);
+	dist[start] = 0;
+	
+	priority_queue<node> q;
+	// priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> q;
+	q.push({ start, 0 });
+	while (!q.empty()) {
+		node cur = q.top(); q.pop();
+		if (visited[cur.nodeNum]) continue;
+		visited[cur.nodeNum] = true;
 
-    return 0;
+		for (auto& nxt : graph[cur.nodeNum]) {
+			if (dist[nxt.nodeNum] > dist[cur.nodeNum] + nxt.weight) {
+				dist[nxt.nodeNum] = dist[cur.nodeNum] + nxt.weight;
+				q.push({ nxt.nodeNum, dist[nxt.nodeNum] });
+			}
+		}
+	}
+
+	for (int i = 1; i <= v; i++) {
+		if(dist[i] == INF)
+			cout << "INF" << "\n";
+		else
+			cout << dist[i] << "\n";
+	}
+
+	return 0;
 }
