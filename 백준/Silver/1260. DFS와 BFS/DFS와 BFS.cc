@@ -56,6 +56,11 @@ int main() {
 		if (visited[cur])
 			continue;
 		visited[cur] = true;
+        
+        
+        
+        
+        
 		cout << cur <<" ";
 
 		for (int child : graph[cur])
