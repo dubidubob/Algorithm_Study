@@ -12,7 +12,8 @@ int main() {
 
     vector<int> trees(n);
     int greatest = 0;
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+   {
         cin >> trees[i];
         greatest = max(greatest, trees[i]);
     }
